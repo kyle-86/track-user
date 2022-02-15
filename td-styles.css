@@ -1,0 +1,56 @@
+.popupDetection {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.popupDetection .popup__body  > * {
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+@media only screen and (max-width: 683px) {
+	.popupDetection .popup__body  > * {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+}
+
+
+.popupDetection .popup__body .countryButtons {
+	margin-bottom: 46px;
+	margin-top: 12px;
+	padding-left: 70px;
+	padding-right: 70px;
+}
+
+@media only screen and (max-width: 683px) {
+	.popupDetection .popup__body .countryButtons {
+		padding-left: 50px;
+	    padding-right: 50px;
+	}
+}
+
+@media only screen and (max-width: 370px) {
+	.countryButtons .button:after {
+		display: none;
+	}
+}
+
+.countryButtons a {
+	margin-right: 10px;
+}
+
+
+@media only screen and (max-width: 683px) {
+	.countryButtons a {
+	margin-right: 0;
+	margin-bottom: 10px;
+}
+	.countryButtons a:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+.countryButtons a:last-of-type {
+	margin-right: 0;
+}
