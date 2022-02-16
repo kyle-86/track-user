@@ -29,7 +29,7 @@
 
 <div class="popup mfp-hide popupDetection" id="popup-detected">
 	<div class="popup__body">
-		<h3 class="heading--beta heading--line heading--line--white heading--line--center" aria-label="Looks like you're shopping from "><span class="line1" aria-hidden="true">Looks like you're shopping from the <?php echo $cookie_detected_location; ?></span></h3>
+		<h3 class="heading--beta heading--line heading--line--white heading--line--center" aria-label="Looks like you're shopping from "><span class="line1" aria-hidden="true">Looks like you're shopping from <?php echo $cookie_detected_location; ?></span></h3>
 		<blockquote><p>Would you like to swap to the <?php echo $cookie_closest_store; ?> site?</p></blockquote>
 		<div class="countryButtons">
 			<a href="#" class="button button--outline close-popup">I'm in the right place</a>

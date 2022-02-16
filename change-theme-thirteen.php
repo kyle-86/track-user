@@ -30,7 +30,7 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://freegeoip.app/json/".$ip,
+    CURLOPT_URL => "https://api.freegeoip.app/json/".$ip."?apikey=a12f5280-8ed3-11ec-bed5-ff90e409c622",
     //CURLOPT_URL => "https://freegeoip.app/json/210.8.50.30",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
@@ -53,9 +53,11 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 
 $data = json_decode($data);
 
+// if($_SERVER["REMOTE_ADDR"]=='124.171.210.30'){ 
 // echo $ip;
 // var_dump($data);
 // echo '<h1>' .$data->country_code.'</h1>';
+// }
 
 $country_code = $data->country_code;
 $longitudeFrom = $data->longitude;
@@ -390,7 +392,7 @@ function add_front_scrips()
     wp_register_script('td-magnific-js', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
     wp_enqueue_script( 'td-magnific-js' );
 
-    wp_register_script('td-location-js', plugin_dir_url( __FILE__ ) .'scripts.js');
+    wp_register_script('td-location-js', plugin_dir_url( __FILE__ ) .'script.js');
 
     wp_enqueue_script( 'td-location-js' );
 }
