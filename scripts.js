@@ -12,5 +12,68 @@ $('.setStore').click(function(e){
   Cookies.set('cookie-location', selectedStore, { expires: 30 });
 });
 
-});
+ /*------------------------------------*\
+        $COOKIE LOCATION
+    \*------------------------------------*/
 
+    $.magnificPopup.close()
+
+    // Magnific Popup - Standard
+
+    $('.js-magnific-location').magnificPopup({
+        type: 'inline',
+        closeBtnInside: true,
+        midClick: true,
+        callbacks: {
+            close: function() {
+                if (!Cookies.get('cookie-location')) { // If no cookie is set
+                    var bodyLocation = $('body').attr('data-location'); // Set location
+                    Cookies.set('cookie-location', bodyLocation, { expires: 30 });
+                }
+            }
+        }
+    });      
+
+    var user_agent = navigator.userAgent;
+    // var is_bot = /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(navigator.userAgent);
+
+    var is_bot = navigator.userAgent.indexOf("Googlebot") != -1;
+
+    if (navigator.userAgent.indexOf("Googlebot") != -1) {        
+        console.log(user_agent);
+    } else {        
+        console.log(user_agent);
+        if (!Cookies.get('cookie-location')) {
+            if ($('#popup-detected').length) {
+            setTimeout(function() {
+                $.magnificPopup.open({
+                    items: {
+                        src: '#popup-detected' 
+                    },
+                    type: 'inline'
+        
+                  // You may add options here, they're exactly the same as for $.fn.magnificPopup call
+                  // Note that some settings that rely on click event (like disableOn or midClick) will not work here
+                }, 0);
+            }, 100);
+        }
+        }
+    }
+
+
+    $('.js-cookie-location').click(function() {
+        var location = $(this).attr('data-location');
+        if (!Cookies.get('cookie-location')) { // If the user hasn't set a location yet
+            Cookies.set('cookie-location', location, { expires: 30 });
+        } else if (Cookies.get('cookie-location')) {
+            Cookies.remove('cookie-location');
+            Cookies.set('cookie-location', location, { expires: 30 });
+        }
+    });
+
+     if (Cookies.get('cookie-location')) { // Else if they have, redirect
+         var cookieLocation = Cookies.get('cookie-location');
+         var currentURL = window.location.href;
+     }
+
+    });

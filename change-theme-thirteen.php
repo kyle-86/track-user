@@ -3,6 +3,9 @@
 /**
  * Plugin Name: Thirteen Redirect Users based on IP
  */
+
+if (is_plugin_active_for_network('thirteen-track-user/change-theme-thirteen.php')) { 
+ 
 function isBot() {
   if ( isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|klaviyo|mediapartners|Mb2345Browser|LieBaoFast|MicroMessenger|Kinza/i', $_SERVER['HTTP_USER_AGENT']) ) {
   }  else {
@@ -14,6 +17,8 @@ else if ( is_admin() && ( defined( 'DOING_AJAX' ) || DOING_AJAX ) ) {
 }
 // Front-end functions
 else { 
+
+  $apiKey = 'a12f5280-8ed3-11ec-bed5-ff90e409c622';
 
 $cookie_location = $_COOKIE['cookie-location'];
 
@@ -30,7 +35,7 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.freegeoip.app/json/".$ip."?apikey=a12f5280-8ed3-11ec-bed5-ff90e409c622",
+    CURLOPT_URL => "https://api.freegeoip.app/json/".$ip."?apikey=".$apiKey,
     //CURLOPT_URL => "https://freegeoip.app/json/210.8.50.30",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
@@ -53,7 +58,7 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 
 $data = json_decode($data);
 
-// if($_SERVER["REMOTE_ADDR"]=='124.171.210.30'){ 
+// if($_SERVER["REMOTE_ADDR"]=='14.202.109.222'){ 
 // echo $ip;
 // var_dump($data);
 // echo '<h1>' .$data->country_code.'</h1>';
@@ -230,6 +235,8 @@ add_action('check_location', 'insertLocatorChoice');
 ?>
 
 <?php
+
+
 add_action("network_admin_menu", "thirteen_track_users");
 function thirteen_track_users() {
 
@@ -392,7 +399,7 @@ function add_front_scrips()
     wp_register_script('td-magnific-js', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
     wp_enqueue_script( 'td-magnific-js' );
 
-    wp_register_script('td-location-js', plugin_dir_url( __FILE__ ) .'script.js');
+    wp_register_script('td-location-js', plugin_dir_url( __FILE__ ) .'scripts.js');
 
     wp_enqueue_script( 'td-location-js' );
 }
@@ -404,5 +411,7 @@ add_action( 'wp_enqueue_scripts', 'add_front_scrips', 20, 1 );
 
 
 add_action( "setup_theme", "isBot" );
+
+}
 
 ?>

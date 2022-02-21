@@ -28,15 +28,44 @@
 ?>
 
 <div class="popup mfp-hide popupDetection" id="popup-detected">
-	<div class="popup__body">
-		<h3 class="heading--beta heading--line heading--line--white heading--line--center" aria-label="Looks like you're shopping from "><span class="line1" aria-hidden="true">Looks like you're shopping from <?php echo $cookie_detected_location; ?></span></h3>
-		<blockquote><p>Would you like to swap to the <?php echo $cookie_closest_store; ?> site?</p></blockquote>
-		<div class="countryButtons">
-			<a href="#" class="button button--outline close-popup">I'm in the right place</a>
-			<a href="<?php echo $sameURLdifferentStore; ?>" class="button setStore" data-closest="<?php echo $cookie_closest_store; ?>">Shop from the <?php echo $cookie_closest_store; ?></a>
-		</div>
-		<?php if ( get_field('td_locator_note','options') ) : ?>
-			<div> <?php echo get_field('td_locator_note','options'); ?> </div>
-		<?php endif; ?>
-	</div>
 </div>
+
+<script>
+
+$(document).ready(function() {
+
+	function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+	let cookie_detected_location = getCookie('cookie-detected-country');
+	let cookie_closest_store = getCookie('cookie-closest-store');
+	let note = 'Please note, switching between sites later may empty your basket.';
+	var php_url = "<?php echo $sameURLdifferentStore; ?>";
+
+
+    $('\<div class="popup__body">\
+		<h3 class="heading--beta heading--line heading--line--white heading--line--center" aria-label="Looks like you\'re shopping from "><span class="line1" aria-hidden="true">Looks like you\'re shopping from '+ cookie_detected_location +'</span></h3>\
+		<blockquote><p>Would you like to swap to the '+ cookie_closest_store +' site?</p></blockquote>\
+		<div class="countryButtons">\
+			<a href="#"" class="button button--outline close-popup">I\'m in the right place</a>\
+			<a href="'+ php_url +'" class="button setStore" data-closest="'+ cookie_closest_store +'">Shop from the '+ cookie_closest_store +'</a>\
+		</div>\
+		'+ note + '\
+	</div>').appendTo('#popup-detected');
+
+});
+
+</script>
