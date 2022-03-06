@@ -55,7 +55,7 @@ Setting the api key:
 3. Change to new api key
 
 Add the following where you want the popup to go in your page. 
-<?php do_action('check_location'); ?>
+// <?php do_action('check_location'); ?>
 
 Other required librarys used:
 
