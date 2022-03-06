@@ -54,6 +54,9 @@ Setting the api key:
 2. Find $apiKey = '#####-######-######-######'; ( Around line 20 )
 3. Change to new api key
 
+Add the following where you want the popup to go in your page. 
+<?php do_action('check_location'); ?>
+
 Other required librarys used:
 
 1. MagnificPopup ( loaded using CDN )

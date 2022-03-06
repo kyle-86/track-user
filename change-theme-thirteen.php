@@ -88,7 +88,7 @@ function checkDistanceToEachStore( $latitudeFrom, $longitudeFrom, $earthRadius =
   );
 
   $closestStoreDistance = '99999999999';
-              $closestStoreCode = 'US';
+  $closestStoreCode = 'US';
 
   for ($totalStores = 0; $totalStores < count($eachStore); $totalStores++) {
 
@@ -172,10 +172,8 @@ if (!$location_code) {
 
 // Redirect to correct store
 
-function insertLocatorChoice() {
-    ?>
-    
-    
+function insertLocatorChoice() { ?>
+
     <?php 
       $blog_id = get_current_blog_id();
       $location = 'US';

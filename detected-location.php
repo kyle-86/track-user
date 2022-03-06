@@ -34,6 +34,8 @@
 
 $(document).ready(function() {
 
+  console.log('here -> ');
+
 	setTimeout(function() {
 
 	function getCookie(cname) {
@@ -58,6 +60,8 @@ $(document).ready(function() {
 	let php_url = "<?php echo $sameURLdifferentStore; ?>";
 	let currentURL = $(location).attr('href');
 
+  console.log(cookie_closest_store);
+
     $('\<div class="popup__body">\
 		<h3 class="heading--beta heading--line heading--line--white heading--line--center" aria-label="Looks like you\'re shopping from "><span class="line1" aria-hidden="true">Looks like you\'re shopping from '+ cookie_detected_location +'</span></h3>\
 		<blockquote><p>Would you like to swap to the '+ cookie_closest_store +' site?</p></blockquote>\
@@ -67,22 +71,23 @@ $(document).ready(function() {
 		</div>\
 		'+ note + '\
 	</div>').appendTo('#popup-detected');
-    $('#popup-detected').addClass('popup');
+  $('#popup-detected').addClass('popup');
 
-      $('.popupDetection .close-popup').click(function(e){
-  e.preventDefault();
-  var selectedStore = $('body').attr('data-location'); // Set location
-  Cookies.set('cookie-location', selectedStore, { expires: 30 });
-  console.log('clicks');
-  $('.popupDetection .mfp-close').trigger('click');
-});
+  $('.popupDetection .close-popup').click(function(e){
+    e.preventDefault();
+    var selectedStore = $('body').attr('data-location'); // Set location
+    Cookies.set('cookie-location', selectedStore, { expires: 30 });
+    console.log('clicks');
+    $('.popupDetection .mfp-close').trigger('click');
+  });
 
 $('.setStore').click(function(e){
   var selectedStore = $(this).attr('data-closest'); // Set location
   Cookies.set('cookie-location', selectedStore, { expires: 30 });
+  console.log(selectedStore + 'current store');
 });
 
-}, 500);
+}, 1500);
 
 });
 

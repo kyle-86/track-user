@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
     var is_bot = navigator.userAgent.indexOf("Googlebot") != -1;
 
     if (navigator.userAgent.indexOf("Googlebot") != -1) {        
-        //console.log(user_agent);
+        console.log(user_agent);
     } else {        
         console.log(user_agent);
         if (!Cookies.get('cookie-location')) {
@@ -57,20 +57,20 @@ jQuery(document).ready(function($) {
         var end_pos = windowPath.indexOf('/',start_pos);
         var storeID = windowPath.substring(start_pos,end_pos);
 
-        //console.log(storeID);
+        console.log(storeID);
 
         if (storeID != 'au' && storeID != 'eu' && storeID != 'uk' ) {
             storeID = 'us';
         }
 
-        //console.log(storeID);
+        console.log(storeID);
 
         if ( cookieLocation == storeID ) {
             console.log('cookie matches store');
              var baseURL = window.location.origin;
             var sameLink = window.location.pathname;
             var newURL = sameLink.replace(storeID, cookieLocation);
-            //console.log(baseURL + newURL);
+            console.log(baseURL + newURL);
         } else { 
             var baseURL = window.location.origin;
             var sameLink = window.location.pathname;
